@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>IDAX Counts into TMV</h1>
+
+    <form action="/submit" method="POST">
+        <label for="Input1">Count Location:</label>
+        <input type="text" id="input1" name="input1"><br>
+
+        <label for="input2">TMV Directory:</label>
+        <input type="text" id="input2" name="input2"><br>
+
+        <label for="input3">Time of Day:</label>
+        <input type="text" id="input3" name="input3"><br>
+
+        <input type="submit" value="Run">
+    </form>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transpo Group - Synchro/Sidra Report Interpreter</title>
+    <script src="enter_button.js"></script>
+    <!-- Add links to CSS files or other JS libraries as needed -->
+</head>
+<body>
+    <div class="title-panel">
+        <img src="C:\Users\amirs\Desktop\Template\IDAX_Uploader\app\templates\Transpo Logo_Web_300.png" style="max-height:50px; max-width:286px;">
+    </div>
+
+    <div class="sidebar-layout">
+        <div class="sidebar-panel">
+            <div style="height: 50px; justify-content: center; align-items: center;">
+                <!-- Content here -->
+            </div>
+            <form>
+
+                <!-- Checkboxes -->
+                <label>Choose time periods that apply:</label><br>
+                <input type="checkbox" id="am" name="timePeriod" value="AM">
+                <label for="am">AM Peak Hour</label><br>
+                <input type="checkbox" id="pm" name="timePeriod" value="PM" checked>
+                <label for="pm">PM Peak Hour</label><br>
+                <input type="checkbox" id="md" name="timePeriod" value="MD" checked>
+                <label for="md">PM Peak Hour</label><br>
+
+                
+
+                <!-- Numeric input -->
+                <label for="yearChoices">For future what years are included?</label>
+                <input type="number" id="yearChoices" name="year" min="2000" max="2100" value="2026"><br>
+
+                <input type="button" id="goButton" value="Go!">
+
+        </div>
+
+        <div class="main-panel">
+            <div id="Input1" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                Count Location:
+                <input type="file" id="Input1" accept=".pdf">
+
+            <div id="input2" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                TMV Directory:
+                <input type="file" id="input2" accept=".pdf">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
