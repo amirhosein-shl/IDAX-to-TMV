@@ -312,9 +312,12 @@ def IDAX(count, TMV, time):
 #### Start of the routes.py
 from app import app
 from flask import render_template, request, redirect, url_for
+from flask_wtf import CSRFProtect
 # from IDAX_to_TMV_py import IDAX
 
-
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'YourRandomSecretKey'  # Replace with a random secret key
+csrf = CSRFProtect(app)
 
 @app.route('/')
 def index():
