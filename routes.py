@@ -314,9 +314,16 @@ from app import app
 from flask import render_template, request, redirect, url_for
 from flask_wtf import CSRFProtect
 # from IDAX_to_TMV_py import IDAX
+from flask import Flask, jsonify
+from flask_wtf.csrf import CSRFProtect, generate_csrf
+
+@app.route('/get-csrf-token', methods=['GET'])
+def get_csrf_token():
+    token = generate_csrf()
+    return jsonify({'csrf_token': token})
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'YourRandomSecretKey'  # Replace with a random secret key
+app.config['SECRET_KEY'] = 'YourSecretKey'  # Replace with your secret key
 csrf = CSRFProtect(app)
 
 @app.route('/')
