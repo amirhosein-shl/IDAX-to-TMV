@@ -318,7 +318,7 @@ from flask import render_template, request, redirect, url_for
 
 @app.route('/')
 def index():
-    return render_template('IDAX_to_TMV.html')
+    return render_template('index.html')
 
 
 @app.route('/submit', methods=['POST'])
