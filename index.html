@@ -36,6 +36,36 @@
         <div class="row">
             <div class="col-md-8">
                 <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                    Drag and drop a ZIP file containing PDFs and Excel files.
+                    <input type="file" id="file_upload" accept=".zip" style="width: 100%;" multiple="false">
+                </div>
+                
+                <script>
+                    const dropZone = document.getElementById('drop_zone');
+                    const fileInput = document.getElementById('file_upload');
+                
+                    dropZone.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        dropZone.style.border = '2px dashed #007BFF';
+                    });
+                
+                    dropZone.addEventListener('dragleave', () => {
+                        dropZone.style.border = '2px dashed #ccc';
+                    });
+                
+                    dropZone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        dropZone.style.border = '2px dashed #ccc';
+                
+                        const files = e.dataTransfer.files;
+                        fileInput.files = files;
+                
+                        // You can now handle the uploaded ZIP file in JavaScript
+                        // Extract the ZIP file and process its contents
+                        processZipFile(fileInput.files[0]);
+                    });
+                </script>
+                <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
                     Drag and drop the counts Folder
                     <input type="file" id="file_upload" accept=".pdf" style="width: 100%;" multiple="FALSE">
                 </div>
@@ -56,6 +86,3 @@
 </body>
 </html>
 
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
