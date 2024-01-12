@@ -23,12 +23,6 @@
     </script>
     <form action="https://amirshl96.pythonanywhere.com/submit" method="POST">
         <input type="hidden" name="csrf_token" id="csrf_token">
-        <label for="Input1">Count Location:</label>
-        <input type="text" id="input1" name="input1"><br>
-
-        <label for="input2">TMV Directory:</label>
-        <input type="text" id="input2" name="input2"><br>
-
         <label for="input3">Time of Day:</label>
         <input type="text" id="input3" name="input3"><br>
 
@@ -37,7 +31,7 @@
             <div class="col-md-8">
                 <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
                     Drag and drop a ZIP file containing PDFs and Excel files.
-                    <input type="file" id="file_upload" accept=".zip" style="width: 100%;" multiple="false">
+                    <input type="file" id="input1" accept=".zip" style="width: 100%;" multiple="false">
                 </div>
                 
                 <script>
@@ -65,14 +59,10 @@
                         processZipFile(fileInput.files[0]);
                     });
                 </script>
-                <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
-                    Drag and drop the counts Folder
-                    <input type="file" id="file_upload" accept=".pdf" style="width: 100%;" multiple="FALSE">
-                </div>
 
                 <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
                     Drag and drop the TMV file.
-                    <input type="file" id="file_upload" accept=".pdf" style="width: 100%;" multiple="FALSE">
+                    <input type="file" id="input2" accept=".xlsx" style="width: 100%;" multiple="FALSE">
                 </div>
                 
                 <button id="download_btn">Download Uploaded File</button>
