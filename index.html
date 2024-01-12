@@ -37,3 +37,67 @@
 </body>
 </html>
 
+import dash
+import dash_html_components as html
+import dash_core_components as dcc
+from dash.dependencies import Input, Output
+import os
+
+app = dash.Dash(__name__)
+
+app.layout = html.Div([
+    html.Div([
+        html.Img(src='Transpo Logo_Web_300.png', style={'max-height': '50px', 'max-width': '286px'}),
+        dcc.Input(id='intNameIdChoice', type='radio', label="Choose one option:",
+                  options=[
+                      {'label': "Intersection #ID and Name as One Column", 'value': "intNameIdAsOne"},
+                      {'label': "Intersection #ID and Name as Two Separate Columns", 'value': "intNameIdAsTwoCols"}
+                  ],
+                  value="intNameIdAsOne"),
+        dcc.Checklist(id='timePeriodChoices', label="Choose all time periods that apply",
+                      options=[
+                          {'label': "AM Peak Hour", 'value': "AM"},
+                          {'label': "PM Peak Hour", 'value': "PM"}
+                      ],
+                      value=["PM"]),
+        dcc.Checklist(id='scenarioChoices', label="Choose all scenarios that are included in the uploaded PDF:",
+                      options=[
+                          {'label': "Existing", 'value': "Ex"},
+                          {'label': "Future Without-Project", 'value': "WoP"},
+                          {'label': "Future With-Project", 'value': "WP"}
+                      ],
+                      value=["Ex", "WoP", "WP"]),
+        dcc.Input(id='yearChoices', type='number', label="For future what years are included?", value=2026,
+                  min=2000, max=2100),
+        html.Button(id='goButton', n_clicks=0, children='Go!'),
+        html.H5("Scenarios:", style={'font-weight': 'bold'}),
+        html.Pre(id='scenarioInfo')
+    ], className="sidebar-panel"),
+    html.Div([
+        html.Div([
+            html.Div([
+                dcc.Upload(
+                    id='upload-data',
+                    children=html.Div([
+                        'Drag and Drop or ',
+                        html.A('Select a File')
+                    ]),
+                    multiple=False
+                )
+            ], id='drop_zone', style={'border': '2px dashed #ccc', 'padding': '20px', 'text-align': 'center'}),
+            dcc.Download(id="download-btn", children="Download Uploaded File"),
+            html.Pre(id="file_info")
+        ], className="main-panel")
+    ], className="main-panel")
+])
+
+@app.callback(
+    Output("file_info", "children"),
+    Input("upload-data", "filename"),
+)
+def upload_file(filename):
+    if filename:
+        return f"Uploaded File: {filename}"
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
