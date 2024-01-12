@@ -329,7 +329,19 @@ csrf = CSRFProtect(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+    
+def process_zip():
+    zip_data = request.data  # Binary data of the ZIP file
 
+    # Extract and process the contents of the ZIP file here
+    # You can use Python's zipfile module to extract the files
+
+    # Example: Extract the ZIP file
+    import zipfile
+    import io
+
+    with zipfile.ZipFile(io.BytesIO(zip_data), 'r') as zip_ref:
+        zip_ref.extractall('/path/to/extracted/files') 
 
 @app.route('/submit', methods=['POST'])
 def process():
